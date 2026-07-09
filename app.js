@@ -11,9 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// ==========================================
 // INTERMEDIÁRIO (MIDDLEWARE) DE AUTENTICAÇÃO
-// ==========================================
+
 // Esta função serve para proteger as rotas. Ela lê o "crachá" (Token JWT) enviado pelo frontend.
 function verificarToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -33,9 +32,7 @@ function verificarToken(req, res, next) {
     }
 }
 
-// ==========================================
 // ROTAS DE AUTENTICAÇÃO
-// ==========================================
 
 // 1. Rota de Registo (Criar Novo Utilizador)
 app.post('/auth/cadastro', async (req, res) => {

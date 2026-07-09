@@ -10,7 +10,7 @@ datasource db {
   directUrl = env("DIRECT_URL") 
 }
 
-// Tabela de Usuários (Nova!)
+// Tabela de Usuários
 model Usuario {
   id       Int      @id @default(autoincrement())
   email    String   @unique
