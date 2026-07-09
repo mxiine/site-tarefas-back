@@ -62,6 +62,7 @@ app.post('/auth/cadastro', async (req, res) => {
 
         res.status(201).json({ mensagem: 'Utilizador criado com sucesso!', usuarioId: novoUsuario.id });
     } catch (error) {
+        console.error("🚨 ERRO GRAVE NO CADASTRO:", error); 
         res.status(500).json({ erro: 'Erro ao criar utilizador.' });
     }
 });
