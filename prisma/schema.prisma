@@ -1,0 +1,32 @@
+// Isto diz ao Prisma para gerar o código JavaScript que vamos usar no app.js
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Isto diz ao Prisma que estamos a usar PostgreSQL e onde está a URL (no .env)
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela de Usuários (Nova!)
+model Usuario {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  senha    String
+  tarefas  Tarefa[] // Magia do Prisma: Um usuário tem uma lista de tarefas
+  criadoEm DateTime @default(now())
+}
+
+// Tabela de Tarefas (Atualizada!)
+model Tarefa {
+  id        Int      @id @default(autoincrement())
+  titulo    String
+  descricao String
+  concluida Boolean  @default(false)
+  criadoEm  DateTime @default(now())
+
+  // Relacionamento: Esta tarefa pertence a um usuário específico
+  usuarioId Int
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+}
